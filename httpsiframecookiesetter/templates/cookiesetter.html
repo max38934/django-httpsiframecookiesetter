@@ -13,7 +13,9 @@
 <body id="cookiesetter">
 {% csrf_token %}
 {% if not cookie_fixed %}
-    <p><a href="{{ absurl }}">Return back</a></p>
+{#    <div style="text-align:center;">#}
+{#        <p><a href="{{ absurl }}">Return back</a></p>#}
+{#    </div>#}
     Hey, we noticed that you use Safari.
     Unfortunately Safari has conservative cookie policy so we cannot start your session.
     So to solve this problem you can press following button to create your session.
