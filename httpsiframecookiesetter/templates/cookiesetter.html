@@ -14,12 +14,22 @@
 {% csrf_token %}
 {% if not cookie_fixed %}
     {% if loading_graphic %}
-{#        <button id="setcookie" style="padding: 1em; font-size: 200%;">Proceed &#187;</button><br />#}
-        <img id="setcookieloadingimg" src="{{ loading_graphic }}" style="display: none; margin: 1em auto;"/>
+{#        <img id="setcookieloadingimg" src="{{ loading_graphic }}" style="display: none; margin: 1em auto;"/>#}
     {% else %}
-        Please wait... <br />
-        <a href="{{ absurl }}">Return back</a>
+{#        Please wait... <br />#}
+{#        <a href="{{ absurl }}">Return back</a>#}
     {% endif %}
+
+    <br />
+    <p>
+        Hey, we noticed that you use Safari.
+        Unfortunately Safari has conservative cookie policy so we cannot start your session.
+        So to solve this problem you can press following button to create your session.
+        <div style="text-align:center;">
+            <button id="setcookie" style="padding: 1em; font-size: 200%;">Proceed &#187;</button><br />
+        </div>
+    </p>
+
 {% endif %}
 <script type="text/javascript">
     (function(){
@@ -27,11 +37,11 @@
            window.opener.location = "{{ absurl }}";
            window.close();
         {% else %}
-    {#        document.getElementById("setcookie").onclick = function(){#}
+            document.getElementById("setcookie").onclick = function(){
                 document.getElementById("setcookieloadingimg").style.display = 'block';
                 document.getElementById("setcookie").style.display = 'none';
                 window.open("{{ cookiesetter_url }}?absurl={{ quoted_absurl }}&cookiefix=true", "cookiesetter", "location=1,status=1,scrollbars=0,width=10,height=10");
-    {#        };#}
+            };
         {% endif %}
      })();
 </script>
